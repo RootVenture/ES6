@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Inheritance Review</title>
+</head>
+
+<body>
+  <script>
+    // constructor function
+    function Dog(name, breed) {
+      // properties associated with an instance
+      this.name = name;
+      this.breed = breed;
+    }
+    // prototypal inheritance
+    Dog.prototype.bark = function () {
+      console.log(`Bark bark! my name is ${this.name}`)
+    }
+    const snickers = new Dog("Snickers", "King Charles");
+    const snickers = new Dog("Sunny", "Golden Doodle");
+
+    Dog.prototype.bark = function () {
+      console.log(`Bark bark!!!! my name is ${this.name}. I am a ${this.breed}`)
+    }
+
+    Dog.prototype.cuddle = function () {
+      console.log(`I love to cuddle!`)
+    }
+  </script>
+</body>
+
+</html>

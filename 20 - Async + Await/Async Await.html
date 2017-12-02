@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Custom Promises</title>
+</head>
+
+<body>
+  <script>
+    // Async - start task and move on to next
+    // Sync - wait for task to be done before you continue to rest of code. e.g. blocking - alert()
+
+    // Async await is built on top of promises
+    function breathe(amt) {
+      return new Promise((resolve, reject) => {
+        if (amt < 500) {
+          reject('Too small')
+        }
+        setTimeout(() => {
+          resolve(`Done for ${amt} ms`)
+        }, amt);
+      })
+    }
+
+    // CAN NEVER USE A TOP LEVEL AWAIT!!! MUST BE IN A FUNCTION MARKED AS ASYNC
+
+    // create a higher order function to wrap around entire async function
+    // a function that takes in a function as an arg, and returns a new function. Think of a function
+    // factory
+    function catchErrors(fn) {
+      // rest to capture arguments
+      return function (...args) {
+        // tack on .catch
+        // spread the args
+        return fn(...args).catch((err) => {
+          console.error("OH NOOOO!")
+          console.error(err)
+        });
+      }
+    }
+
+    // mark function as async
+    async function go(name, last) {
+      console.log(`starting for ${name} ${last}`)
+      // await function pauses the remainder of the function while it waits for the value
+      const res = await breathe(600)
+      console.log(res);
+      const res1 = await breathe(100)
+      console.log(res1);
+      const res2 = await breathe(750)
+      console.log(res2);
+      console.log('end');
+    }
+
+    const wrappedFunction = catchErrors(go);
+
+    wrappedFunction();
+  </script>
+</body>
+
+</html>

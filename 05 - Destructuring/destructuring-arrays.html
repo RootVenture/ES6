@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Destructuring Arrays</title>
+</head>
+
+<body>
+  <script>
+    const details = ['Wes Bos', 123, 'wesbos.com'];
+    // const name = details[0];
+    // const id = details[1];
+    const [name, id, website] = details;
+
+    console.log(name, id, website);
+
+    const data = 'Basketball,Sports,90210,23,Hi,Extra,Items';
+    const [itemName, category, sku, inventory] = data.split(',');
+    console.log(itemName, category, sku, inventory);
+
+    // Rest - apply the 'rest' of the values in the array
+    const team = ['Wes', 'Ray', 'Harry', 'Sarah', 'Smith']
+
+    const [captain, assistant, ...players] = team;
+    console.log(captain, assistant, players);
+
+  </script>
+</body>
+
+</html>

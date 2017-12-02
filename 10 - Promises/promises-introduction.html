@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Promises!</title>
+</head>
+
+<body>
+  <script>
+    // promises are often used for ajax work (fetching json api)
+    // a promise is something that will happen in the future, but not immedietly
+    const postsPromise = fetch('http://wesbos.com/wp-json/wp/v2/posts');
+    // then will only fire if successful
+    // catch will catch any errors along the way
+    postsPromise
+      .then(data => data.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+
+  </script>
+</body>
+
+</html>

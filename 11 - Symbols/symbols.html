@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Symbols</title>
+</head>
+
+<body>
+  <script>
+    // Number, String, Boolean, Object, Null, Undefined, AND NOW SYMBOL!
+    // Symbols are unique identifiers, used to avoid naming collisions
+    // 'Wes' within the symbol is called a descriptor! 
+    const wes = Symbol('Wes');
+    const person = Symbol('Wes');
+
+    // Symbols are enumerable
+    const classRoom = {
+      [Symbol('Mark')]: { grade: 50, gender: 'male' },
+      [Symbol('Olivia')]: { grade: 80, gender: 'female' },
+      [Symbol('Olivia')]: { grade: 80, gender: 'female' },
+    }
+
+    // CANT DO THIS! Therefore may be good for storing private data!
+    for (person in classRoom) {
+      console.log(person);
+    }
+
+    const syms = Object.getOwnPropertySymbols(classRoom);
+    console.log(syms);
+
+    // to extract the data within the Symbol
+    const data = syms.map(sym => classRoom[sym]);
+    console.log(data);
+  </script>
+</body>
+
+</html>

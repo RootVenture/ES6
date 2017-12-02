@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Async Await</title>
+</head>
+
+<body>
+  <script>
+    // async function go() {
+    //   const p1 = fetch('https://api.github.com/users/wesbos')//.then(r => r.json());
+    //   const p2 = fetch('https://api.github.com/users/stolinski')//.then(r => r.json());
+    //   // wait for both to return
+    //   const res = await Promise.all([p1, p2]);
+    //   // creates an array of two Promises
+    //   const dataPromises = res.map(r => r.json());
+    //   // destructure the data
+    //   const [d1, d2] = await Promise.all(dataPromises);
+    // }
+    //
+    // go();
+
+    async function getData(names) {
+      const promises = names.map(name => fetch(`https://api.github.com/users/${name}`).then(r => r.json()))
+      const [me, wes, scott] = await Promise.all(promises);
+      console.log(me, wes, scott);
+
+    }
+
+    getData(['rootventure', 'wesbos', 'stolinski'])
+  </script>
+</body>
+
+</html>

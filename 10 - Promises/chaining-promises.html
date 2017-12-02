@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chaining Promises</title>
+</head>
+
+<body>
+  <script>
+    const posts = [
+      { title: 'I love JavaScript', author: 'Wes Bos', id: 1 },
+      { title: 'CSS!', author: 'Chris Coyier', id: 2 },
+      { title: 'Dev tools tricks', author: 'Addy Osmani', id: 3 },
+    ];
+
+    const authors = [
+      { name: 'Wes Bos', twitter: '@wesbos', bio: 'Canadian Developer' },
+      { name: 'Chris Coyier', twitter: '@chriscoyier', bio: 'CSS Tricks and CodePen' },
+      { name: 'Addy Osmani', twitter: '@addyosmani', bio: 'Googler' },
+    ];
+
+    function getPostById(id) {
+      // need to create a new promise b/c we need to retrieve data from a DB
+      return new Promise((resolve, reject) => {
+        // Use settimeout to mimic database
+        setTimeout(() => {
+          // find the target post
+          const post = posts.find(post => post.id === id)
+          if (post) {
+            // send post back
+            resolve(post);
+          } else {
+            // otherwise fail
+            reject(Error('No post was found'))
+          }
+        }, 200);
+      })
+    }
+
+    function hydrateAuthor(post) {
+      // create new promise
+      return new Promise((resolve, reject) => {
+        // find author
+        const authorDetails = authors.find(person => person.name === post.author);
+        if (authorDetails) {
+          post.author = authorDetails;
+          resolve(post)
+        } else {
+          reject(Error("Cannot find the author"))
+        }
+      })
+    }
+
+    getPostById(2)
+      .then(post => {
+        console.log(post);
+        hydrateAuthor(post);
+      })
+      .then(post => {
+        console.log(post);
+      })
+      .catch(err => console.log(err))
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Custom Promises</title>
+</head>
+
+<body>
+  <script>
+    // any function that returns a Promise has a Promise based api.
+    // Can be used interchangably with async await
+
+    function breathe(amt) {
+      return new Promise((resolve, reject) => {
+        if (amt < 500) {
+          reject('Too small')
+        }
+        setTimeout(() => {
+          resolve(`Done for ${amt} ms`)
+        }, amt);
+      })
+    }
+
+    breathe(1000).then(res => {
+      console.log(res);
+      return breathe(500).then(res => {
+        console.log(res);
+      }).then(res => {
+        console.log(res);
+        return breathe(200)
+      }).then(res => {
+        console.log(res);
+        return breathe(600)
+      }).then(res => {
+        console.log(res);
+        return breathe(500)
+      }).catch(err => {
+        console.error(err)
+        console.error('Error!!')
+      })
+    })
+  </script>
+</body>
+
+</html>

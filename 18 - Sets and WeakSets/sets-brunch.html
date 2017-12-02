@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Brunch with Sets</title>
+</head>
+
+<body>
+  <script>
+    const brunch = new Set();
+    // as people start coming in
+    brunch.add('Ray');
+    brunch.add('Yao');
+    brunch.add('Smith');
+    // ready to open!
+    const line = brunch.values();
+    console.log(line.next().value);
+    console.log(line.next().value);
+    console.log(line.next().value);
+    brunch.add('Heather')
+    brunch.add('Snickers')
+    brunch.add('Amy')
+    console.log(line.next().value);
+    console.log(line.next().value);
+    console.log(line.next().value);
+
+  </script>
+</body>
+
+</html>

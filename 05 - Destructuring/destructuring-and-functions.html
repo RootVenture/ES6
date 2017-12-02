@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Destructuring in Action!</title>
+</head>
+
+<body>
+  <script>
+    function convertCurrency(amount) {
+      const converted = {
+        USD: amount * 0.76,
+        GPB: amount * 0.53,
+        AUD: amount * 1.01,
+        MEX: amount * 13.30
+      };
+      return converted;
+    }
+
+    const { USD, GPB, AUD, MEX } = convertCurrency(100);
+    console.log(USD, GPB, AUD, MEX);
+
+    // note passing in arguments as an object to make order independent
+    // give default argument, if no arguments are passed in it will default in these params
+    function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+      return total + (tip * total) + (tax * total)
+    }
+
+    // object passed in will be automatically destructured
+    const bill = tipCalc();
+    console.log("bill: " + bill);
+
+  </script>
+</body>
+
+</html>

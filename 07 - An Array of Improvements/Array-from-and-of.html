@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Array .from() and .of()</title>
+</head>
+<div class="people">
+  <p>Wes</p>
+  <p>Kait</p>
+  <p>Snickers</p>
+</div>
+
+<body>
+  <script>
+    // From and of are NOT on the Array.prototype
+    // They are on the Array itself!
+    // Array.from() will take something Array-like and turn them into an Array. E.g. Dom elements; NodeLists
+    const people = document.querySelectorAll('.people p')
+    const peopleArray = Array.from(people, person => {
+      return person.textContent
+    }); //converts NodeList to an Array; second argument is the map function
+    console.log(peopleArray)
+
+    function sumAll() {
+      // Not an Array!
+      const nums = Array.from(arguments);
+      return nums.reduce((prev, next) => prev += next, 0)
+    }
+
+    sumAll(2, 23, 123, 12, 31, 241, 25, 4637, 544, 141);
+
+    // Creates a array from these arguments
+    const ages = Array.of(12, 4, 123, 5, 1, 2)
+    console.log(ages);
+  </script>
+</body>
+
+</html>

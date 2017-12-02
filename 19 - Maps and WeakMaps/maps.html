@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Maps!</title>
+</head>
+
+<body>
+  <script>
+    // maps are similar to objects, have keys and values
+    // One benefit over Objects - can use for of loop with a Map
+
+    const dogs = new Map();
+    // k and v can be anything
+    dogs.set('Snickers', 3);
+    dogs.set('Sunny', 2);
+    dogs.set('Hugo', 10);
+    // .has(k), .get(k), .delete(k)
+
+    dogs.forEach((v, k) => console.log(v, k))
+
+    // returns array [k,v]
+    for (const [k, v] of dogs) {
+      console.log(k, v)
+    }
+
+  </script>
+</body>
+
+</html>
