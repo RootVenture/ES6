@@ -17,20 +17,23 @@
     // Make a nav for the inventory
     const nav = Object.keys(inventory).map(item => `<li>${item}</li>`).join('');
     console.log(nav);
-
     // tell us how many values we have
-    const totalInventory = Object.values(inventory).reduce((a, b) => a + b);
+    const totalInventory = Object.values(inventory).reduce((a, b) => a + b, 0);
     console.log(totalInventory);
 
     // Print an inventory list with numbers
-    Object.entries(inventory).forEach(([key, val]) => {
-      console.log(key, val);
-    });
+    Object.entries(inventory).forEach(([k, v]) => {
+      console.log(k, v);
+    })
 
-    for (const [key, val] of Object.entries(inventory)) {
-      console.log(key);
-      if (key === 'jeans') break;
+    // Benefit: ability to break out of loop; works with any iterables
+    for (const [k, v] of Object.entries(inventory)) {
+      console.log(k);
+      if (k === 'jeans') {
+        break
+      }
     }
+
   </script>
 </body>
 
